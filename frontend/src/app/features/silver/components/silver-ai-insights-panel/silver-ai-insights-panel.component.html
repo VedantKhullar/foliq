@@ -1,0 +1,20 @@
+<app-intelligence-panel
+  title="AI insights"
+  subtitle="Cross-market observations and anomaly notes"
+  badge="signals"
+  footerLabel="Open full insights feed"
+  [footerCount]="hiddenCount"
+>
+  <ul class="insights">
+    @for (insight of visibleInsights; track insight.id) {
+      <li class="insight" [attr.data-confidence]="insight.confidence">
+        <div class="insight__row">
+          <span class="insight__tag" [attr.data-tag]="insight.tag">{{ insight.tag }}</span>
+          <span class="insight__confidence num">conf · {{ insight.confidence }}</span>
+        </div>
+        <div class="insight__title">{{ insight.title }}</div>
+        <div class="insight__detail">{{ insight.detail }}</div>
+      </li>
+    }
+  </ul>
+</app-intelligence-panel>

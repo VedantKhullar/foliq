@@ -1,0 +1,32 @@
+<article class="market-card" [attr.data-tone]="tone()">
+  <header class="market-card__head">
+    <div class="market-card__id">
+      <span class="market-card__symbol">{{ data().symbol }}</span>
+      @if (data().venue; as venue) {
+        <span class="market-card__venue">{{ venue }}</span>
+      }
+    </div>
+    <span class="market-card__name">{{ data().name }}</span>
+  </header>
+
+  <div class="market-card__body">
+    <div class="market-card__price-block">
+      <div class="market-card__price num">
+        @if (data().currency; as cur) {
+          <span class="market-card__currency">{{ cur }}</span>
+        }
+        <span>{{ formattedPrice() }}</span>
+        @if (data().unit; as unit) {
+          <span class="market-card__unit">/ {{ unit }}</span>
+        }
+      </div>
+      <div class="market-card__change" [attr.data-tone]="tone()">
+        <span class="num">{{ formattedChange() }}</span>
+        <span class="market-card__pct num">{{ formattedPct() }}</span>
+      </div>
+    </div>
+    <div class="market-card__spark">
+      <app-sparkline [values]="data().sparkline" [tone]="tone()" [width]="104" [height]="36" />
+    </div>
+  </div>
+</article>

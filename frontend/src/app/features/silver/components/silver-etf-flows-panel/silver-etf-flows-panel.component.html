@@ -1,0 +1,28 @@
+<app-intelligence-panel
+  title="ETF flows"
+  subtitle="Weekly net change in physical-backed silver ETFs"
+  badge="W"
+  footerLabel="Open ETF breakdown"
+  [footerCount]="hiddenCount"
+>
+  <div class="etf">
+    <div class="etf__head">
+      <span>Fund</span>
+      <span>AUM</span>
+      <span>Net flow</span>
+    </div>
+    @for (row of visibleRows; track row.id) {
+      <div class="etf-row" [attr.data-direction]="row.direction">
+        <div class="etf-row__fund">
+          <span class="etf-row__ticker num">{{ row.ticker }}</span>
+          <span class="etf-row__name">{{ row.fund }}</span>
+        </div>
+        <div class="etf-row__aum num">{{ row.aum }}</div>
+        <div class="etf-row__flow">
+          <div class="etf-row__bar" [style.width.%]="barWidthPct(row.flow)"></div>
+          <span class="etf-row__flow-label num">{{ row.flowLabel }}</span>
+        </div>
+      </div>
+    }
+  </div>
+</app-intelligence-panel>

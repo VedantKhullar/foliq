@@ -1,0 +1,116 @@
+:host {
+  display: block;
+}
+
+.calendar {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.cal-row {
+  display: grid;
+  grid-template-columns: 4rem 1fr auto;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px dashed var(--border-subtle);
+  flex: 1;
+  min-height: 0;
+
+  &:first-child {
+    padding-top: 0.5rem;
+  }
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0.5rem;
+  }
+
+  &__date {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+
+  &__day {
+    font-size: var(--fs-md);
+    font-weight: 500;
+    color: var(--text-primary);
+    letter-spacing: -0.005em;
+  }
+
+  &__time {
+    margin-top: 0.125rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  &__main {
+    min-width: 0;
+  }
+
+  &__meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  &__flag {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--text-primary);
+    padding: 0.0625rem 0.4375rem;
+    background: var(--bg-elevated-2);
+    border: 1px solid var(--border-default);
+    border-radius: 0.3125rem;
+  }
+
+  &__region {
+    font-size: var(--fs-xs);
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+
+  &__title {
+    font-size: var(--fs-base);
+    color: var(--text-primary);
+    letter-spacing: -0.005em;
+    line-height: 1.35;
+  }
+
+  &__importance {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__pill {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 0.125rem 0.5rem;
+    background: var(--bg-elevated-2);
+    border: 1px solid var(--border-default);
+    border-radius: 999px;
+  }
+
+  &[data-importance='high'] &__pill {
+    color: var(--accent-amber);
+    border-color: rgba(224, 173, 106, 0.35);
+  }
+
+  &[data-importance='medium'] &__pill {
+    color: var(--accent-blue);
+    border-color: rgba(130, 181, 255, 0.3);
+  }
+}

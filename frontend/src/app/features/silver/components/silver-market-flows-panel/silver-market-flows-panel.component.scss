@@ -1,0 +1,82 @@
+:host {
+  display: block;
+}
+
+.flows {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.flow-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px dashed var(--border-subtle);
+  flex: 1;
+  min-height: 0;
+
+  &:first-child {
+    padding-top: 0.5rem;
+  }
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0.5rem;
+  }
+
+  &__main {
+    min-width: 0;
+  }
+
+  &__label {
+    font-size: var(--fs-base);
+    color: var(--text-primary);
+    letter-spacing: -0.005em;
+  }
+
+  &__detail {
+    margin-top: 0.1875rem;
+    font-size: var(--fs-xs);
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  &__values {
+    text-align: right;
+  }
+
+  &__value {
+    font-size: var(--fs-base);
+    font-weight: 500;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__change {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3125rem;
+    margin-top: 0.1875rem;
+    font-size: var(--fs-xs);
+    color: var(--neutral);
+    font-variant-numeric: tabular-nums;
+  }
+
+  &[data-direction='inflow'] .flow-row__change {
+    color: var(--positive);
+  }
+
+  &[data-direction='outflow'] .flow-row__change {
+    color: var(--negative);
+  }
+
+  &__arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+  }
+}

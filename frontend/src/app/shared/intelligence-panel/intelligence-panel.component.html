@@ -1,0 +1,43 @@
+<section class="panel">
+  <header class="panel__head">
+    <div class="panel__titles">
+      <h3 class="panel__title">
+        {{ title() }}
+        @if (badge(); as b) {
+          <span class="panel__badge num">{{ b }}</span>
+        }
+      </h3>
+      @if (subtitle(); as s) {
+        <p class="panel__subtitle">{{ s }}</p>
+      }
+    </div>
+    <div class="panel__actions">
+      <ng-content select="[panel-actions]" />
+    </div>
+  </header>
+
+  <div class="panel__body">
+    <ng-content />
+  </div>
+
+  @if (footerLabel(); as label) {
+    <footer class="panel__footer">
+      <button type="button" class="panel__load-more" (click)="onLoadMore()">
+        <span class="panel__load-more-text">{{ label }}</span>
+        @if (footerCount() && footerCount()! > 0) {
+          <span class="panel__load-more-count num">+{{ footerCount() }}</span>
+        }
+        <svg class="panel__load-more-icon" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+          <path
+            d="M4 3l3 3-3 3"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+    </footer>
+  }
+</section>
