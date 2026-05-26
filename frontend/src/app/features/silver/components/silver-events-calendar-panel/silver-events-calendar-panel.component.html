@@ -1,0 +1,28 @@
+<app-intelligence-panel
+  title="Key events calendar"
+  subtitle="Catalysts the desk is watching this week"
+  badge="this week"
+  footerLabel="Open full calendar"
+  [footerCount]="hiddenCount"
+>
+  <ol class="calendar">
+    @for (event of visibleEvents; track event.id) {
+      <li class="cal-row" [attr.data-importance]="event.importance">
+        <div class="cal-row__date">
+          <span class="cal-row__day">{{ event.date }}</span>
+          <span class="cal-row__time num">{{ event.time }}</span>
+        </div>
+        <div class="cal-row__main">
+          <div class="cal-row__meta">
+            <span class="cal-row__flag">{{ event.flag }}</span>
+            <span class="cal-row__region">{{ event.region }}</span>
+          </div>
+          <div class="cal-row__title">{{ event.title }}</div>
+        </div>
+        <div class="cal-row__importance">
+          <span class="cal-row__pill">{{ event.importance }}</span>
+        </div>
+      </li>
+    }
+  </ol>
+</app-intelligence-panel>

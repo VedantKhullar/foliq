@@ -1,0 +1,111 @@
+:host {
+  display: block;
+}
+
+.insights {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.insight {
+  position: relative;
+  padding: 0.625rem 0.8125rem 0.6875rem 0.9375rem;
+  background: var(--bg-elevated-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0.625rem;
+    bottom: 0.625rem;
+    left: 0;
+    width: 2px;
+    background: var(--text-faint);
+    border-radius: 0 2px 2px 0;
+  }
+
+  &[data-confidence='high']::before {
+    background: var(--accent-blue);
+  }
+
+  &[data-confidence='medium']::before {
+    background: var(--accent-amber);
+  }
+
+  &[data-confidence='low']::before {
+    background: var(--text-faint);
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  &__tag {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    padding: 0.125rem 0.4375rem;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: 0.3125rem;
+  }
+
+  &__tag[data-tag='spread'] {
+    color: var(--accent-blue);
+  }
+  &__tag[data-tag='flow'] {
+    color: var(--accent-teal);
+  }
+  &__tag[data-tag='demand'] {
+    color: var(--positive);
+  }
+  &__tag[data-tag='supply'] {
+    color: var(--accent-amber);
+  }
+  &__tag[data-tag='macro'] {
+    color: var(--accent-violet);
+  }
+  &__tag[data-tag='correlation'] {
+    color: var(--accent-silver);
+  }
+
+  &__confidence {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  &__title {
+    font-size: var(--fs-base);
+    color: var(--text-primary);
+    letter-spacing: -0.005em;
+    line-height: 1.35;
+  }
+
+  &__detail {
+    margin-top: 0.1875rem;
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
+    line-height: 1.45;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+  }
+}

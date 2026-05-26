@@ -1,0 +1,32 @@
+<app-intelligence-panel
+  title="Policy & major updates"
+  subtitle="Central banks, trade rules, supply, and macro catalysts"
+  footerLabel="Open policy feed"
+  [footerCount]="hiddenCount"
+>
+  <div panel-actions class="policy__filter">
+    <button type="button" class="policy__chip is-active">All</button>
+    <button type="button" class="policy__chip">Macro</button>
+    <button type="button" class="policy__chip">Supply</button>
+  </div>
+
+  <ol class="policy">
+    @for (item of visibleItems; track item.id) {
+      <li class="policy-item" [attr.data-impact]="item.impact">
+        <span class="policy-item__rail" aria-hidden="true">
+          <span class="policy-item__dot"></span>
+        </span>
+        <div class="policy-item__body">
+          <div class="policy-item__meta">
+            <span class="policy-item__flag" aria-hidden="true">{{ item.flag }}</span>
+            <span class="policy-item__region">{{ item.region }}</span>
+            <span class="policy-item__time">· {{ item.timestamp }}</span>
+            <span class="policy-item__impact">{{ item.impact }}</span>
+          </div>
+          <div class="policy-item__headline">{{ item.headline }}</div>
+          <div class="policy-item__detail">{{ item.body }}</div>
+        </div>
+      </li>
+    }
+  </ol>
+</app-intelligence-panel>

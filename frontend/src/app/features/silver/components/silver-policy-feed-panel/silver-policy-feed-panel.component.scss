@@ -1,0 +1,179 @@
+:host {
+  display: block;
+}
+
+.policy {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.policy__filter {
+  display: inline-flex;
+  gap: 0.25rem;
+}
+
+.policy__chip {
+  padding: 0.1875rem 0.625rem;
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--bg-elevated-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  transition: color var(--motion-fast), border-color var(--motion-fast);
+
+  &:hover {
+    color: var(--text-secondary);
+    border-color: var(--border-default);
+  }
+
+  &.is-active {
+    color: var(--text-primary);
+    border-color: var(--border-strong);
+    background: var(--bg-active);
+  }
+}
+
+.policy-item {
+  display: grid;
+  grid-template-columns: 1rem 1fr;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px dashed var(--border-subtle);
+  flex: 1;
+  min-height: 0;
+
+  &:first-child {
+    padding-top: 0.5rem;
+  }
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0.5rem;
+  }
+
+  &__rail {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 1rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0.625rem;
+      bottom: -1rem;
+      width: 1px;
+      background: var(--border-subtle);
+    }
+  }
+
+  &:last-child &__rail::before {
+    display: none;
+  }
+
+  &__dot {
+    position: relative;
+    z-index: 1;
+    margin-top: 0.375rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--bg-elevated-2);
+    border: 1.5px solid var(--text-muted);
+  }
+
+  &[data-impact='bullish'] &__dot {
+    border-color: var(--positive);
+    background: var(--positive-soft);
+  }
+
+  &[data-impact='bearish'] &__dot {
+    border-color: var(--negative);
+    background: var(--negative-soft);
+  }
+
+  &__body {
+    min-width: 0;
+  }
+
+  &__meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4375rem;
+    font-size: var(--fs-xs);
+    letter-spacing: 0.02em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  &__flag {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--text-primary);
+    padding: 0.0625rem 0.4375rem;
+    background: var(--bg-elevated-2);
+    border: 1px solid var(--border-default);
+    border-radius: 0.3125rem;
+  }
+
+  &__region {
+    text-transform: none;
+    letter-spacing: -0.005em;
+    color: var(--text-secondary);
+  }
+
+  &__time {
+    color: var(--text-muted);
+    text-transform: none;
+    letter-spacing: -0.005em;
+  }
+
+  &__impact {
+    margin-left: auto;
+    padding: 0.125rem 0.4375rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    background: var(--bg-elevated-2);
+    border: 1px solid var(--border-default);
+    border-radius: 0.3125rem;
+  }
+
+  &[data-impact='bullish'] &__impact {
+    color: var(--positive);
+    border-color: rgba(89, 227, 148, 0.3);
+  }
+
+  &[data-impact='bearish'] &__impact {
+    color: var(--negative);
+    border-color: rgba(250, 138, 138, 0.3);
+  }
+
+  &__headline {
+    margin-top: 0.3125rem;
+    font-size: var(--fs-base);
+    color: var(--text-primary);
+    letter-spacing: -0.005em;
+    line-height: 1.35;
+  }
+
+  &__detail {
+    margin-top: 0.1875rem;
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
+    line-height: 1.45;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+  }
+}

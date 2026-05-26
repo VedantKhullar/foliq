@@ -1,0 +1,26 @@
+<app-intelligence-panel
+  title="Drivers of silver"
+  subtitle="How the desk reads the current mix of demand and supply forces"
+  footerLabel="Open drivers detail"
+>
+  <div class="drivers">
+    @for (driver of drivers; track driver.id) {
+      <div class="driver" [attr.data-stance]="driver.stance">
+        <div class="driver__head">
+          <div class="driver__title">{{ driver.title }}</div>
+          <div class="driver__stance num">{{ driver.stance }}</div>
+        </div>
+        <div class="driver__detail">{{ driver.detail }}</div>
+        <div class="driver__meter">
+          <div class="driver__meter-track">
+            <div class="driver__meter-fill" [style.width.%]="driver.strength"></div>
+          </div>
+          <span class="driver__meter-value num">{{ driver.strength }}</span>
+        </div>
+        <div class="driver__trend">
+          <app-sparkline [values]="driver.trend" [tone]="tone(driver.stance)" [width]="120" [height]="24" />
+        </div>
+      </div>
+    }
+  </div>
+</app-intelligence-panel>

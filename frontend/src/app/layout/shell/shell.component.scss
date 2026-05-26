@@ -1,0 +1,26 @@
+:host {
+  display: block;
+  height: 100vh;
+}
+
+.shell {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  height: 100vh;
+  background: var(--bg-base);
+  color: var(--text-primary);
+
+  &__sidebar {
+    height: 100vh;
+    border-right: 1px solid var(--border-subtle);
+    background: var(--bg-base);
+  }
+
+  &__main {
+    overflow: auto;
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(110, 168, 254, 0.04), transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, rgba(155, 140, 245, 0.035), transparent 60%),
+      var(--bg-canvas);
+  }
+}

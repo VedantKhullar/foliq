@@ -1,0 +1,138 @@
+:host {
+  display: block;
+}
+
+.drivers {
+  display: grid;
+  /* auto-fit so the grid scales smoothly from 4 → 2 → 1 with main-column width */
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 0.875rem;
+}
+
+.driver {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5625rem;
+  padding: 0.875rem 1rem 1rem;
+  background: var(--bg-elevated-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0.875rem;
+    bottom: 0.875rem;
+    left: 0;
+    width: 2px;
+    border-radius: 0 2px 2px 0;
+    background: var(--text-faint);
+  }
+
+  &[data-stance='supportive']::before {
+    background: var(--positive);
+  }
+
+  &[data-stance='pressuring']::before {
+    background: var(--negative);
+  }
+
+  &[data-stance='mixed']::before {
+    background: var(--accent-amber);
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  &__title {
+    font-size: var(--fs-md);
+    color: var(--text-primary);
+    letter-spacing: -0.008em;
+    font-weight: 500;
+  }
+
+  &__stance {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 0.125rem 0.4375rem;
+    border: 1px solid var(--border-default);
+    border-radius: 999px;
+  }
+
+  &[data-stance='supportive'] &__stance {
+    color: var(--positive);
+    border-color: rgba(89, 227, 148, 0.3);
+  }
+
+  &[data-stance='pressuring'] &__stance {
+    color: var(--negative);
+    border-color: rgba(250, 138, 138, 0.3);
+  }
+
+  &[data-stance='mixed'] &__stance {
+    color: var(--accent-amber);
+    border-color: rgba(224, 173, 106, 0.35);
+  }
+
+  &__detail {
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  &__meter {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin-top: auto;
+    padding-top: 0.3125rem;
+  }
+
+  &__meter-track {
+    flex: 1;
+    height: 0.25rem;
+    background: var(--bg-elevated);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  &__meter-fill {
+    height: 100%;
+    background: var(--text-muted);
+    border-radius: 999px;
+  }
+
+  &[data-stance='supportive'] &__meter-fill {
+    background: var(--positive);
+  }
+
+  &[data-stance='pressuring'] &__meter-fill {
+    background: var(--negative);
+  }
+
+  &[data-stance='mixed'] &__meter-fill {
+    background: var(--accent-amber);
+  }
+
+  &__meter-value {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text-secondary);
+    min-width: 2rem;
+    text-align: right;
+  }
+
+  &__trend {
+    display: flex;
+    align-items: center;
+    height: 1.75rem;
+  }
+}

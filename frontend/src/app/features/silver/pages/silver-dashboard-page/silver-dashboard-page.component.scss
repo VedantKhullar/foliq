@@ -1,0 +1,52 @@
+:host {
+  display: block;
+}
+
+.workspace {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: var(--shell-padding-y) var(--shell-padding-x) var(--space-10);
+  max-width: 110rem;
+  margin: 0 auto;
+
+  &__snapshot,
+  &__chart,
+  &__intel {
+    display: block;
+  }
+
+  /* shared grid row — every row is a clean rectangle that stretches its children to equal height */
+  &__row {
+    display: grid;
+    gap: var(--space-6);
+    align-items: stretch;
+  }
+
+  /* chart + AI insights — chart gets more horizontal weight */
+  &__row--chart {
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+
+    @media (max-width: 90rem) {
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+      gap: var(--space-5);
+    }
+
+    @media (max-width: 76rem) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* balanced two-column rows */
+  &__row--split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
+    @media (max-width: 90rem) {
+      gap: var(--space-5);
+    }
+
+    @media (max-width: 60rem) {
+      grid-template-columns: 1fr;
+    }
+  }
+}

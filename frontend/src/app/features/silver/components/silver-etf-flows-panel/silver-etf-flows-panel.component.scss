@@ -1,0 +1,117 @@
+:host {
+  display: block;
+}
+
+.etf {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  &__head {
+    display: grid;
+    grid-template-columns: 1.4fr 0.8fr 1.2fr;
+    gap: 0.875rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+}
+
+.etf-row {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr 1.2fr;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px dashed var(--border-subtle);
+  flex: 1;
+  min-height: 0;
+
+  &:first-child {
+    padding-top: 0.625rem;
+  }
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0.5rem;
+  }
+
+  &__fund {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    min-width: 0;
+  }
+
+  &__ticker {
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--text-primary);
+  }
+
+  &__name {
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__aum {
+    font-size: var(--fs-sm);
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__flow {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    height: 1.125rem;
+  }
+
+  &__bar {
+    position: absolute;
+    right: 4.75rem;
+    height: 0.4375rem;
+    border-radius: 999px;
+    background: var(--text-muted);
+    opacity: 0.65;
+  }
+
+  &__flow-label {
+    position: relative;
+    z-index: 1;
+    min-width: 4.25rem;
+    text-align: right;
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
+    color: var(--text-secondary);
+  }
+
+  &[data-direction='inflow'] {
+    .etf-row__bar {
+      background: var(--positive);
+    }
+    .etf-row__flow-label {
+      color: var(--positive);
+    }
+  }
+
+  &[data-direction='outflow'] {
+    .etf-row__bar {
+      background: var(--negative);
+    }
+    .etf-row__flow-label {
+      color: var(--negative);
+    }
+  }
+}

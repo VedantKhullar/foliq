@@ -1,0 +1,125 @@
+:host {
+  display: block;
+}
+
+.market-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding: 0.9375rem 1rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--motion-fast), background var(--motion-fast);
+
+  &:hover {
+    border-color: var(--border-default);
+    background: var(--bg-elevated-2);
+  }
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1875rem;
+    min-width: 0;
+  }
+
+  &__id {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__symbol {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--text-primary);
+  }
+
+  &__venue {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 0.0625rem 0.4375rem;
+    border: 1px solid var(--border-default);
+    border-radius: 999px;
+  }
+
+  &__name {
+    font-size: var(--fs-xs);
+    color: var(--text-muted);
+    letter-spacing: -0.005em;
+  }
+
+  &__body {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 0.625rem;
+  }
+
+  &__price-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+  }
+
+  &__price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.3125rem;
+    font-size: var(--fs-xl);
+    font-weight: 500;
+    letter-spacing: -0.018em;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__currency {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  &__unit {
+    font-size: var(--fs-xs);
+    color: var(--text-muted);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+
+  &__change {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    color: var(--neutral);
+
+    &[data-tone='positive'] {
+      color: var(--positive);
+    }
+
+    &[data-tone='negative'] {
+      color: var(--negative);
+    }
+  }
+
+  &__pct {
+    font-size: var(--fs-xs);
+    opacity: 0.9;
+  }
+
+  &__spark {
+    display: flex;
+    align-items: flex-end;
+    height: 2.75rem;
+  }
+}

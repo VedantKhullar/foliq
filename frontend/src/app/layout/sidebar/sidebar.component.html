@@ -1,0 +1,116 @@
+<aside class="sidebar">
+  <div class="sidebar__brand">
+    <span class="sidebar__brand-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 17 L9 7 L12 13 L15 9 L20 17" stroke="currentColor" />
+        <circle cx="9" cy="7" r="1.4" fill="currentColor" />
+        <circle cx="15" cy="9" r="1.4" fill="currentColor" />
+      </svg>
+    </span>
+    <span class="sidebar__brand-text">Foliq</span>
+    <span class="sidebar__brand-badge num">beta</span>
+  </div>
+
+  <nav class="sidebar__nav" aria-label="Primary">
+    <div class="sidebar__nav-label">Markets</div>
+    @for (item of primaryNav; track item.id) {
+      <button
+        type="button"
+        class="nav-item"
+        [class.is-active]="activeItem() === item.id"
+        [class.is-disabled]="item.disabled"
+        [disabled]="item.disabled"
+        (click)="select(item)"
+      >
+        <span class="nav-item__icon" [attr.data-icon]="item.icon" aria-hidden="true">
+          @switch (item.icon) {
+            @case ('silver') {
+              <svg viewBox="0 0 16 16" fill="none" stroke-width="1.4" stroke="currentColor">
+                <circle cx="8" cy="8" r="5.2" />
+                <path d="M5.6 8h4.8M8 5.6v4.8" stroke-linecap="round" />
+              </svg>
+            }
+            @case ('gold') {
+              <svg viewBox="0 0 16 16" fill="none" stroke-width="1.4" stroke="currentColor">
+                <circle cx="8" cy="8" r="5.2" />
+                <path d="M6 10V6h2.4a1.4 1.4 0 0 1 0 2.8H6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            }
+            @case ('stocks') {
+              <svg viewBox="0 0 16 16" fill="none" stroke-width="1.4" stroke="currentColor">
+                <path d="M2.5 12 L6 7 L9 9.5 L13.5 4" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M10.5 4h3v3" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            }
+            @case ('macro') {
+              <svg viewBox="0 0 16 16" fill="none" stroke-width="1.4" stroke="currentColor">
+                <circle cx="8" cy="8" r="5.4" />
+                <path d="M2.6 8h10.8M8 2.6c1.8 2 1.8 8.8 0 10.8M8 2.6c-1.8 2-1.8 8.8 0 10.8" />
+              </svg>
+            }
+            @case ('signals') {
+              <svg viewBox="0 0 16 16" fill="none" stroke-width="1.4" stroke="currentColor">
+                <path d="M3 8h2l1.5-4 3 8 1.5-4H13" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            }
+            @case ('events') {
+              <svg viewBox="0 0 16 16" fill="none" stroke-width="1.4" stroke="currentColor">
+                <rect x="2.6" y="3.5" width="10.8" height="9.5" rx="1.6" />
+                <path d="M2.6 6.5h10.8M5.5 2.5v2M10.5 2.5v2" stroke-linecap="round" />
+              </svg>
+            }
+            @case ('watchlists') {
+              <svg viewBox="0 0 16 16" fill="none" stroke-width="1.4" stroke="currentColor">
+                <path d="M4 2.6h8v10.8l-4-2.4-4 2.4z" stroke-linejoin="round" />
+              </svg>
+            }
+            @case ('settings') {
+              <svg viewBox="0 0 16 16" fill="none" stroke-width="1.4" stroke="currentColor">
+                <circle cx="8" cy="8" r="2.2" />
+                <path d="M8 1.6v1.8M8 12.6v1.8M14.4 8h-1.8M3.4 8H1.6M12.5 3.5l-1.3 1.3M4.8 11.2l-1.3 1.3M12.5 12.5l-1.3-1.3M4.8 4.8 3.5 3.5" stroke-linecap="round" />
+              </svg>
+            }
+          }
+        </span>
+        <span class="nav-item__label">{{ item.label }}</span>
+        @if (item.disabled) {
+          <span class="nav-item__hint num">soon</span>
+        }
+      </button>
+    }
+  </nav>
+
+  <div class="sidebar__footer">
+    @for (item of bottomNav; track item.id) {
+      <button
+        type="button"
+        class="nav-item"
+        [class.is-disabled]="item.disabled"
+        [disabled]="item.disabled"
+        (click)="select(item)"
+      >
+        <span class="nav-item__icon" aria-hidden="true">
+          <svg viewBox="0 0 16 16" fill="none" stroke-width="1.4" stroke="currentColor">
+            <circle cx="8" cy="8" r="2.2" />
+            <path d="M8 1.6v1.8M8 12.6v1.8M14.4 8h-1.8M3.4 8H1.6M12.5 3.5l-1.3 1.3M4.8 11.2l-1.3 1.3M12.5 12.5l-1.3-1.3M4.8 4.8 3.5 3.5" stroke-linecap="round" />
+          </svg>
+        </span>
+        <span class="nav-item__label">{{ item.label }}</span>
+      </button>
+    }
+
+    <div class="profile">
+      <div class="profile__avatar" aria-hidden="true">VK</div>
+      <div class="profile__meta">
+        <div class="profile__name">Vedant K.</div>
+        <div class="profile__role">Research</div>
+      </div>
+      <button type="button" class="profile__logout" title="Log out" aria-label="Log out">
+        <svg viewBox="0 0 16 16" fill="none" stroke-width="1.4" stroke="currentColor">
+          <path d="M10 11.5v1.4a1 1 0 0 1-1 1H4.4a1 1 0 0 1-1-1V3.1a1 1 0 0 1 1-1H9a1 1 0 0 1 1 1V4.5" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M7 8h6.4M11.6 6 13.6 8 11.6 10" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</aside>

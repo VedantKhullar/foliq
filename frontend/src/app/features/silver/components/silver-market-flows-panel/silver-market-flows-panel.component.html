@@ -1,0 +1,39 @@
+<app-intelligence-panel
+  title="Market flows & positioning"
+  subtitle="Five-day net activity across vehicles and venues"
+  badge="5D"
+  footerLabel="Open full positioning"
+  [footerCount]="hiddenCount"
+>
+  <div class="flows">
+    @for (row of visibleRows; track row.id) {
+      <div class="flow-row" [attr.data-direction]="row.direction">
+        <div class="flow-row__main">
+          <div class="flow-row__label">{{ row.label }}</div>
+          <div class="flow-row__detail">{{ row.detail }}</div>
+        </div>
+        <div class="flow-row__values">
+          <div class="flow-row__value num">{{ row.value }}</div>
+          <div class="flow-row__change">
+            <span class="flow-row__arrow" aria-hidden="true">
+              @if (row.direction === 'inflow') {
+                <svg viewBox="0 0 10 10" width="10" height="10">
+                  <path d="M5 8V2M5 2L2 5M5 2l3 3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              } @else if (row.direction === 'outflow') {
+                <svg viewBox="0 0 10 10" width="10" height="10">
+                  <path d="M5 2v6M5 8l3-3M5 8 2 5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              } @else {
+                <svg viewBox="0 0 10 10" width="10" height="10">
+                  <path d="M2 5h6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+                </svg>
+              }
+            </span>
+            <span class="num">{{ row.changeLabel }}</span>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</app-intelligence-panel>

@@ -1,0 +1,123 @@
+<section class="chart-card">
+  <header class="chart-card__head">
+    <div class="chart-card__titles">
+      <div class="chart-card__eyebrow">Cross-market comparison</div>
+      <h2 class="chart-card__title">Silver vs. correlated markets</h2>
+    </div>
+    <div class="chart-card__controls">
+      <app-segmented-control
+        size="sm"
+        [options]="modeOptions"
+        [value]="mode()"
+        (valueChange)="setMode($event)"
+      />
+      <app-segmented-control
+        size="sm"
+        [options]="timeframeOptions"
+        [value]="timeframe()"
+        (valueChange)="setTimeframe($event)"
+      />
+    </div>
+  </header>
+
+  <div class="chart-card__legend">
+    @for (s of series(); track s.id) {
+      <button
+        type="button"
+        class="legend-chip"
+        [class.is-off]="!s.visible"
+        [attr.data-tone]="tone(s.changePct)"
+        (click)="toggleSeries(s.id)"
+      >
+        <span class="legend-chip__swatch" [style.background]="s.color"></span>
+        <span class="legend-chip__label">{{ s.label }}</span>
+        <span class="legend-chip__change num">{{ formatChange(s.changePct) }}</span>
+      </button>
+    }
+  </div>
+
+  <div class="chart-card__canvas">
+    <svg
+      class="chart-svg"
+      [attr.viewBox]="'0 0 ' + viewWidth + ' ' + viewHeight"
+      preserveAspectRatio="none"
+      aria-label="Silver comparison chart"
+    >
+      <defs>
+        <pattern id="chart-grid" width="80" height="60" patternUnits="userSpaceOnUse">
+          <path d="M 80 0 L 0 0 0 60" fill="none" stroke="rgba(255,255,255,0.025)" stroke-width="1" />
+        </pattern>
+        @for (s of series(); track s.id) {
+          <linearGradient [attr.id]="'glow-' + s.id" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" [attr.stop-color]="s.color" stop-opacity="0.18" />
+            <stop offset="100%" [attr.stop-color]="s.color" stop-opacity="0" />
+          </linearGradient>
+        }
+      </defs>
+
+      <rect [attr.width]="viewWidth" [attr.height]="viewHeight" fill="url(#chart-grid)" />
+
+      @for (t of yTicks(); track t.y) {
+        <line
+          [attr.x1]="0"
+          [attr.y1]="t.y"
+          [attr.x2]="viewWidth - padRight"
+          [attr.y2]="t.y"
+          stroke="rgba(255,255,255,0.04)"
+          stroke-dasharray="2 4"
+        />
+        @if (t.label) {
+          <text
+            class="chart-svg__axis"
+            [attr.x]="viewWidth - padRight + 10"
+            [attr.y]="t.y + 4"
+            fill="var(--text-muted)"
+            font-size="12"
+            font-family="var(--font-mono)"
+          >
+            {{ t.label }}
+          </text>
+        }
+      }
+
+      @for (s of series(); track s.id) {
+        @if (s.visible) {
+          <path
+            [attr.d]="s.path"
+            fill="none"
+            [attr.stroke]="s.color"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <circle
+            [attr.cx]="viewWidth - padRight"
+            [attr.cy]="s.endY"
+            r="3.2"
+            [attr.fill]="s.color"
+            opacity="0.95"
+          />
+        }
+      }
+
+      @for (t of xTicks(); track t.x; let i = $index) {
+        <text
+          class="chart-svg__axis"
+          [attr.x]="t.x"
+          [attr.y]="viewHeight - 8"
+          fill="var(--text-muted)"
+          font-size="12"
+          font-family="var(--font-mono)"
+          [attr.text-anchor]="i === 0 ? 'start' : i === xTicks().length - 1 ? 'end' : 'middle'"
+        >
+          {{ t.label }}
+        </text>
+      }
+    </svg>
+
+    <div class="chart-card__hint">
+      <span class="chart-card__hint-key num">⟶</span>
+      Cross-market overlay. Toggle series above. Live chart integration planned.
+    </div>
+  </div>
+</section>
